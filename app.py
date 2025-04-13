@@ -90,7 +90,7 @@ def predict():
         grading = int(request.form.get('grading', 2))
         lym = int(request.form.get('lym', 0))
         stadium = int(request.form.get('stadium', 2))
-        pl_delka = int(request.form.get('pl_delka', 36))
+        pl_delka = int(request.form.get('pl_delka', 3000)) / 365
         pl_mamo = int(request.form.get('pl_mamo', 0))
         
         # Treatment modalities
@@ -146,7 +146,7 @@ def predict():
 
         X = torch.tensor(
     [stadium, vek, tumour_size, er_status, grading, o_count, r_count,
-    t_count, c_count, h_count, i_count, pl_delka], dtype=torch.float32).unsqueeze(0)
+    t_count, c_count, h_count, i_count, pl_delka * 365], dtype=torch.float32).unsqueeze(0)
         
         # Normalize features
         # time_features_norm = (time_features - feature_means) / (feature_stds + 1e-8)
@@ -168,9 +168,9 @@ def predict():
 
         # Format time bins as percentages
         time_bins = {
-            "1-4 roky": round(bin_probs[1] * 100, 1), 
-            "4-8 let": round(bin_probs[2] * 100, 1),
-            ">8 let": round(bin_probs[3] * 100, 1)
+            "1-4 roky": round((bin_probs[1] * 100) * (risk_score/100), 1), 
+            "4-8 let": round((bin_probs[2] * 100) * (risk_score/100), 1), 
+            ">8 let": round((bin_probs[3] * 100) * (risk_score/100), 1)
         }
         
         # Update time bins
@@ -186,7 +186,7 @@ def predict():
             'Grading': grading + 1,  # Convert back to 1-3 scale for display
             'Lymfatické uzliny': 'Pozitivní' if lym == 1 else 'Negativní',
             'Stadium': stadium,
-            'Délka plánu (měsíce)': pl_delka,
+            'Délka plánu (měsíce)': round(pl_delka * 365, 1),
             'Mamografický screening': 'Ano' if pl_mamo == 1 else 'Ne',
             'Operace (O)': o_count,
             'Radioterapie (R)': r_count,
