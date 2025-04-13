@@ -1,0 +1,108 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-10">
+        <!-- <div class="section-heading text-center mb-5">
+            <h2>Výsledky hodnocení rizika</h2>
+            <div class="heading-line"></div>
+        </div> -->
+        
+        <div class="alert text-center risk-result mb-5">
+            <h2 class="mb-0">Vaše riziko recidivy rakoviny prsu: <span class="fw-bold">{{ risk_score }}%</span></h2>
+        </div>
+        
+        {% if time_bins %}
+        <div class="mb-5">
+            <h3 class="mb-4">Pravděpodobnost času relapsu</h3>
+            <div class="row">
+                {% for period, probability in time_bins.items() %}
+                <div class="col-md-3 mb-3">
+                    <div class="card text-center h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ period }}</h5>
+                            <p class="card-text display-6">{{ probability }}%</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+        
+        <div class="mb-5">
+            <h3 class="mb-4">Zohledněné klinické faktory</h3>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <tbody>
+                        <tr>
+                            <th>Věková kategorie</th>
+                            <td>{{ data['Věková kategorie'] }}</td>
+                        </tr>
+                        <tr>
+                            <th>ER status</th>
+                            <td>{{ data['ER status'] }}</td>
+                        </tr>
+                        <tr>
+                            <th>Velikost nádoru (T)</th>
+                            <td>{{ data['Velikost nádoru (T)'] }}</td>
+                        </tr>
+                        <tr>
+                            <th>Grading</th>
+                            <td>{{ data['Grading'] }}</td>
+                        </tr>
+                        <tr>
+                            <th>Lymfatické uzliny</th>
+                            <td>{{ data['Lymfatické uzliny'] }}</td>
+                        </tr>
+                        <tr>
+                            <th>Stadium</th>
+                            <td>{{ data['Stadium'] }}</td>
+                        </tr>
+                        <tr>
+                            <th>Délka plánu (měsíce)</th>
+                            <td>{{ data['Délka plánu (měsíce)'] }}</td>
+                        </tr>
+                        <tr>
+                            <th>Mamografický screening</th>
+                            <td>{{ data['Mamografický screening'] }}</td>
+                        </tr>
+                        <tr>
+                            <th>Operace (O)</th>
+                            <td>{{ data['Operace (O)'] }}</td>
+                        </tr>
+                        <tr>
+                            <th>Radioterapie (R)</th>
+                            <td>{{ data['Radioterapie (R)'] }}</td>
+                        </tr>
+                        <tr>
+                            <th>Transplantace (T)</th>
+                            <td>{{ data['Transplantace (T)'] }}</td>
+                        </tr>
+                        <tr>
+                            <th>Chemoterapie (C)</th>
+                            <td>{{ data['Chemoterapie (C)'] }}</td>
+                        </tr>
+                        <tr>
+                            <th>Hormonální terapie (H)</th>
+                            <td>{{ data['Hormonální terapie (H)'] }}</td>
+                        </tr>
+                        <tr>
+                            <th>Imunoterapie (I)</th>
+                            <td>{{ data['Imunoterapie (I)'] }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div class="text-center mt-5">
+            <a href="/" class="btn btn-primary btn-lg px-5">Vypočítat znovu</a>
+        </div>
+        
+        <div class="alert disclaimer mt-5">
+            <p class="mb-0"><strong>Poznámka:</strong> Toto je zjednodušená kalkulačka rizika pro demonstrační účely. Pro přesné lékařské doporučení se prosím obraťte na zdravotnické odborníky.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

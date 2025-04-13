@@ -1,0 +1,165 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-10">
+        <!-- <div class="section-heading text-center mb-5">
+            <h2>Klinické faktory pro predikci relapsu</h2>
+             <div class="heading-line"></div>
+        </div> -->
+        
+        <form id="riskForm" action="/predict" method="post" class="clean-form">
+            <!-- Basic patient information -->
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <label for="vekInput" class="form-label">Věková kategorie</label>
+                    <select class="form-select" id="vekInput" name="vek" required>
+                        <option value="">Vyberte věkovou kategorii</option>
+                        <option value="0">< 40 let</option>
+                        <option value="1">40-50 let</option>
+                        <option value="2">50-60 let</option>
+                        <option value="3">60-70 let</option>
+                        <option value="4">70-80 let</option>
+                        <option value="5">80+ let</option>
+                    </select>
+                </div>
+                
+                <div class="col-md-6">
+                    <label class="form-label">ER status</label>
+                    <div class="d-flex">
+                        <div class="form-check me-3">
+                            <input class="form-check-input" type="radio" name="er_status" id="erPositive" value="1" required>
+                            <label class="form-check-label" for="erPositive">Pozitivní</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="er_status" id="erNegative" value="0">
+                            <label class="form-check-label" for="erNegative">Negativní</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tumor characteristics -->
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <label for="tumourSizeInput" class="form-label">Velikost nádoru (T)</label>
+                    <select class="form-select" id="tumourSizeInput" name="tumour_size" required>
+                        <option value="">Vyberte T klasifikaci</option>
+                        <option value="0">T0</option>
+                        <option value="1">T1</option>
+                        <option value="2">T2</option>
+                        <option value="3">T3</option>
+                        <option value="4">T4</option>
+                    </select>
+                </div>
+                
+                <div class="col-md-6">
+                    <label class="form-label">Grading</label>
+                    <div class="d-flex">
+                        <div class="form-check me-3">
+                            <input class="form-check-input" type="radio" name="grading" id="grade1" value="0" required>
+                            <label class="form-check-label" for="grade1">1</label>
+                        </div>
+                        <div class="form-check me-3">
+                            <input class="form-check-input" type="radio" name="grading" id="grade2" value="1">
+                            <label class="form-check-label" for="grade2">2</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="grading" id="grade3" value="2">
+                            <label class="form-check-label" for="grade3">3</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Lymph nodes and stage -->
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <label class="form-label">Metastázy v lymfatických uzlinách</label>
+                    <div class="d-flex">
+                        <div class="form-check me-3">
+                            <input class="form-check-input" type="radio" name="lym" id="lymYes" value="1" required>
+                            <label class="form-check-label" for="lymYes">Ano</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="lym" id="lymNo" value="0">
+                            <label class="form-check-label" for="lymNo">Ne</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <label for="stadiumInput" class="form-label">Stadium</label>
+                    <select class="form-select" id="stadiumInput" name="stadium" required>
+                        <option value="">Vyberte stadium</option>
+                        <option value="0">0</option>
+                        <option value="1">I</option>
+                        <option value="2">II</option>
+                        <option value="3">III</option>
+                        <option value="4">IV</option>
+                    </select>
+                </div>
+            </div>
+            
+            <!-- Treatment information -->
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <label for="plDelkaInput" class="form-label">Délka primární léčby (ve dnech)</label>
+                    <input type="number" class="form-control" id="plDelkaInput" name="pl_delka" min="0" required>
+                    <div class="form-text">Zadejte délku léčby v letech</div>
+                </div>
+                
+                <div class="col-md-6">
+                    <label class="form-label">Mamografický screening</label>
+                    <div class="d-flex">
+                        <div class="form-check me-3">
+                            <input class="form-check-input" type="radio" name="pl_mamo" id="mamoYes" value="1" required>
+                            <label class="form-check-label" for="mamoYes">Ano</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="pl_mamo" id="mamoNo" value="0">
+                        </div>
+                    </div>
+                </div>
+            </div>
+                                        <label class="form-check-label" for="mamoNo">Ne</label>
+
+            <!-- Treatment modalities -->
+            <div class="mb-4">
+                <label class="form-label">Léčebné modality</label>
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <label for="oCountInput" class="form-label">Operace (O)</label>
+                        <input type="number" class="form-control" id="oCountInput" name="O_count" min="0" max="10" value="0" required>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="rCountInput" class="form-label">Radioterapie (R)</label>
+                        <input type="number" class="form-control" id="rCountInput" name="R_count" min="0" max="10" value="0" required>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="tCountInput" class="form-label">Transplantace (T)</label>
+                        <input type="number" class="form-control" id="tCountInput" name="T_count" min="0" max="10" value="0" required>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="cCountInput" class="form-label">Chemoterapie (C)</label>
+                        <input type="number" class="form-control" id="cCountInput" name="C_count" min="0" max="10" value="0" required>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="hCountInput" class="form-label">Hormonální terapie (H)</label>
+                        <input type="number" class="form-control" id="hCountInput" name="H_count" min="0" max="10" value="0" required>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="iCountInput" class="form-label">Imunoterapie (I)</label>
+                        <input type="number" class="form-control" id="iCountInput" name="I_count" min="0" max="10" value="0" required>
+                    </div>
+                </div>
+                <div class="form-text">Zadejte počet použití každé léčebné modality</div>
+            </div>
+            
+            <div class="text-center mt-5">
+                <button type="submit" class="btn btn-primary btn-lg px-5">Vypočítat riziko relapsu</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

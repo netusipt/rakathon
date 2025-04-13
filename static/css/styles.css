@@ -1,0 +1,464 @@
+:root {
+    --primary: #4361ee;
+    --primary-light: #4895ef;
+    --secondary: #4cc9f0;
+    --accent: #f72585;
+    --dark: #3a0ca3;
+    --light: #f8f9fa;
+    --success: #4caf50;
+    --warning: #ff9800;
+    --danger: #f44336;
+    --gray-100: #f8f9fa;
+    --gray-200: #e9ecef;
+    --gray-300: #dee2e6;
+    --gray-400: #ced4da;
+    --gray-500: #adb5bd;
+    --gray-600: #6c757d;
+    --gray-700: #495057;
+    --gray-800: #343a40;
+    --gray-900: #212529;
+  }
+  
+  body {
+    background: linear-gradient(135deg, #f6f9fc 0%, #f0f4f8 100%);
+    color: var(--gray-800);
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+  
+  .container {
+    max-width: 1200px;
+  }
+  
+  /* Typography */
+  h1 {
+    color: var(--primary);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    font-size: 2.5rem;
+    position: relative;
+    display: inline-block;
+  }
+  
+  /* h1:after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -10px;
+    height: 4px;
+    width: 80px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    transform: translateX(-50%);
+    border-radius: 2px;
+  } */
+  
+  h3 {
+    font-weight: 600;
+    color: var(--primary);
+  }
+  
+  h4 {
+    color: var(--dark);
+    font-weight: 600;
+    margin-bottom: 1.2rem;
+    border-left: 4px solid var(--primary);
+    padding-left: 12px;
+  }
+  
+  /* Card styling */
+  .card {
+    border-radius: 16px;
+    overflow: hidden;
+    border: none;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
+    margin-bottom: 30px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-header {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+    color: white;
+    border-bottom: 0;
+    padding: 25px 30px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .card-header::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 100%;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.1);
+    transform: rotate(30deg);
+  }
+  
+  .card-body {
+    padding: 35px;
+    background-color: white;
+  }
+  
+  /* Form elements */
+  .form-label {
+    margin-bottom: 0.7rem;
+    color: var(--gray-700);
+    font-weight: 500;
+    font-size: 0.95rem;
+  }
+  
+  .form-control {
+    border-radius: 10px;
+    padding: 12px 16px;
+    border: 1px solid var(--gray-300);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.02);
+  }
+  
+  .form-control:focus {
+    box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.15);
+    border-color: var(--primary);
+  }
+  
+  .form-text {
+    color: var(--gray-600);
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+  }
+  
+  .form-check-input {
+    width: 1.2em;
+    height: 1.2em;
+    margin-top: 0.25em;
+    transition: all 0.2s ease;
+  }
+  
+  .form-check-input:checked {
+    background-color: var(--primary);
+    border-color: var(--primary);
+  }
+  
+  .form-check-label {
+    padding-left: 0.15rem;
+  }
+  
+  /* Buttons */
+  .btn-primary {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    padding: 12px 28px;
+    transition: all 0.3s ease;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 15px rgba(67, 97, 238, 0.3);
+  }
+  
+  .btn-primary:hover, .btn-primary:focus {
+    background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(67, 97, 238, 0.4);
+  }
+  
+  .btn-lg {
+    padding: 14px 30px;
+    font-size: 1.05rem;
+  }
+  
+  /* Risk result styling */
+  .risk-result {
+    background: linear-gradient(135deg, rgba(67, 97, 238, 0.1) 0%, rgba(76, 201, 240, 0.1) 100%);
+    border: none;
+    border-radius: 12px;
+    padding: 30px;
+    color: var(--primary);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(67, 97, 238, 0.1);
+  }
+  
+  .risk-result h2 {
+    font-weight: 600;
+    margin-bottom: 0;
+  }
+  
+  .risk-result::before {
+    content: "";
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(76, 201, 240, 0.1) 0%, rgba(76, 201, 240, 0) 70%);
+    top: -100px;
+    right: -100px;
+    border-radius: 50%;
+  }
+  
+  .risk-result::after {
+    content: "";
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(67, 97, 238, 0.1) 0%, rgba(67, 97, 238, 0) 70%);
+    bottom: -100px;
+    left: -100px;
+    border-radius: 50%;
+  }
+  
+  .risk-result span.fw-bold {
+    color: var(--accent);
+    font-size: 1.3em;
+  }
+  
+  /* Disclaimer box */
+  .disclaimer {
+    background-color: rgba(255, 152, 0, 0.1);
+    border: none;
+    border-radius: 12px;
+    padding: 20px 25px;
+    color: #995e00;
+    border-left: 4px solid var(--warning);
+  }
+  
+  /* Table styling */
+  .table {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.03);
+  }
+  
+  .table th, .table td {
+    padding: 15px 20px;
+    vertical-align: middle;
+  }
+  
+  .table th {
+    background-color: rgba(67, 97, 238, 0.05);
+    font-weight: 600;
+    color: var(--primary);
+    border-bottom: none;
+  }
+  
+  .table tr:last-child td {
+    border-bottom: none;
+  }
+  
+  .table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(248, 249, 250, 0.7);
+  }
+  
+  /* Footer styling */
+  footer {
+    color: var(--gray-600);
+    font-size: 0.9rem;
+    margin-top: 2rem;
+  }
+  
+  footer hr {
+    opacity: 0.1;
+    margin: 1.5rem 0;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .card-body {
+      padding: 25px 20px;
+    }
+    
+    .form-check {
+      margin-bottom: 0.7rem;
+    }
+    
+    h1 {
+      font-size: 2rem;
+    }
+    
+    .card-header {
+      padding: 20px;
+    }
+    
+    .risk-result {
+      padding: 20px;
+    }
+  }
+  
+  /* Animation for form submission button */
+  @keyframes pulse {
+    0% {
+      box-shadow: 0 0 0 0 rgba(67, 97, 238, 0.4);
+    }
+    70% {
+      box-shadow: 0 0 0 10px rgba(67, 97, 238, 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(67, 97, 238, 0);
+    }
+  }
+  
+  .btn-primary:focus {
+    animation: pulse 1.5s infinite;
+  }
+  
+  /* Row spacing */
+  .row.mb-4 {
+    margin-bottom: 2rem !important;
+  }
+  
+  /* Header background effect */
+  .header-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 300px;
+    background: linear-gradient(135deg, rgba(67, 97, 238, 0.07) 0%, rgba(76, 201, 240, 0.07) 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 65%, 0 100%);
+    z-index: -1;
+  }
+  
+  /* Logo icon styling */
+  .logo-icon {
+    font-size: 3rem;
+    color: var(--primary);
+    margin-bottom: 1rem;
+    display: inline-block;
+    position: relative;
+  }
+  
+  .logo-icon:before {
+    content: "";
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background: rgba(67, 97, 238, 0.1);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+  }
+  
+  /* Additional form styling refinements */
+  .form-check {
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+  }
+  
+  .form-check-input {
+    margin-right: 0.5rem;
+  }
+  
+  /* Card hover effect */
+  .card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Better focus states for accessibility */
+  .btn:focus, .form-control:focus, .form-check-input:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.25);
+  }
+  
+  /* Subtle highlighting effect for table rows */
+  .table tbody tr {
+    transition: background-color 0.2s ease;
+  }
+  
+  .table tbody tr:hover {
+    background-color: rgba(67, 97, 238, 0.03) !important;
+  }
+  
+  /* Better spacing for the form groups */
+  .col-md-6 {
+    margin-bottom: 1rem;
+  }
+  
+  /* Nicer styling for the disabled form elements */
+  .form-check-input:disabled {
+    opacity: 0.5;
+  }
+  
+  /* Enhance the disclaimer box */
+  .disclaimer strong {
+    color: #cc7a00;
+  }
+  
+  /* Additional CSS for clean form design */
+  .clean-form {
+    background-color: white;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  }
+  
+  .section-heading {
+    margin-bottom: 2rem;
+  }
+  
+  .heading-line {
+    height: 4px;
+    width: 70px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    margin: 0.8rem auto 0;
+    border-radius: 2px;
+  }
+  
+  h2 {
+    color: var(--primary);
+    font-weight: 600;
+  }
+  
+  .form-label {
+    font-weight: 600;
+    color: var(--gray-700);
+  }
+  
+  .clean-form .row:not(:last-child) {
+    border-bottom: 1px solid var(--gray-200);
+    padding-bottom: 2rem;
+  }
+  
+  .table-responsive {
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  }
+  
+  /* Better spacing between form elements */
+  .form-check-label {
+    font-weight: 500;
+  }
+  
+  /* Improve button styling */
+  .btn-primary {
+    padding: 14px 36px;
+    letter-spacing: 0.5px;
+  }
+  
+  /* Make risk result more prominent */
+  .risk-result {
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  /* Enhanced disclaimer */
+  .disclaimer {
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
